@@ -6,6 +6,10 @@
         <variable
             name="viewModel"
             type="com.giftm.shorturltestapplication.ui.shortui.ShortUrlViewModel" />
+
+        <variable
+            name="activity"
+            type="com.giftm.shorturltestapplication.ui.shortui.ShortUrlActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +20,7 @@
         tools:context=".ui.shortui.ShortUrlActivity">
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_marginTop="20dp"
             android:id="@+id/short_edtxt"
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -32,15 +37,17 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
+            android:onClick="@{()->viewModel.clickConvert()}"
             android:text="단축 URL 변환"
             app:layout_constraintLeft_toLeftOf="@+id/short_edtxt"
             app:layout_constraintRight_toRightOf="@+id/short_edtxt"
             app:layout_constraintTop_toBottomOf="@+id/short_edtxt" />
 
         <TextView
+            android:layout_marginTop="10dp"
             android:id="@+id/url_txt"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="30dp"
             android:gravity="center_vertical"
             android:text="변환된 Url"
             app:layout_constraintLeft_toLeftOf="@+id/short_btn"
@@ -50,7 +57,7 @@
             android:id="@+id/short_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:mutableText="@{viewModel.shortenUrl()}"
+            mutableText="@{viewModel.getShortenUrl()}"
             app:layout_constraintLeft_toLeftOf="@+id/url_txt"
             app:layout_constraintTop_toBottomOf="@+id/url_txt"
             tools:text="google.com" />
@@ -67,6 +74,7 @@
             <Button
                 android:gravity="center_vertical"
                 android:text="클립보드 복사"
+                android:onClick="@{()->activity.showToast()}"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
 
